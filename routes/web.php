@@ -27,4 +27,7 @@ Route::get('/test/{name}', function ($name) {
     return view('test',["name"=>$name]);
 });
 
-Route::get('user/{id}', [UserController::class,'show']);
+// Route::get('user/{id}', [UserController::class,'show']);
+Route::get('user/{id}', [UserController::class,'User']);
+
+Route::get("/testingComponent", [UserController::class,'testingFunction']);
