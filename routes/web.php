@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\userLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,14 @@ Route::get('/test/{name}', function ($name) {
 // Route::get('user/{id}', [UserController::class,'show']);
 Route::get('user/{id}', [UserController::class,'User']);
 
-Route::get("/testingComponent", [UserController::class,'testingFunction']);
+Route::get("/testingComponent", [UserController::class,'testingFunction'])->middleware('ageCheck');
+
+
+Route::post("/login", [userLoginController::class, "userdata"]);
+
+Route::view("/noAccess","noAccessGlobal");
+// Route::view("userLogin","userLogin");
+
+Route::group(["middleware"=>["AgeCheck"]], function() {
+    Route::view("userLogin","userLogin");
+});
