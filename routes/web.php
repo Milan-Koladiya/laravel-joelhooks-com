@@ -15,30 +15,35 @@ use App\Http\Controllers\userLoginController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/test/milan');
-    // return view('welcome');
-});
-
-// Router::get('/testing/testcase', function($textcase) {
-//     return view('testing', ["testing"=>$textcase]);
+// Route::get('/', function () {
+//     return redirect('/test/milan');
+//     // return view('welcome');
 // });
 
-Route::get('/test/{name}', function ($name) {
-    return view('test',["name"=>$name]);
-});
+// // Router::get('/testing/testcase', function($textcase) {
+// //     return view('testing', ["testing"=>$textcase]);
+// // });
 
-// Route::get('user/{id}', [UserController::class,'show']);
-Route::get('user/{id}', [UserController::class,'User']);
+// Route::get('/test/{name}', function ($name) {
+//     return view('test',["name"=>$name]);
+// });
 
-Route::get("/testingComponent", [UserController::class,'testingFunction'])->middleware('ageCheck');
+// // Route::get('user/{id}', [UserController::class,'show']);
+// Route::get('user/{id}', [UserController::class,'User']);
+
+// Route::get("/testingComponent", [UserController::class,'testingFunction'])->middleware('ageCheck');
 
 
-Route::post("/login", [userLoginController::class, "userdata"]);
-
-Route::view("/noAccess","noAccessGlobal");
 // Route::view("userLogin","userLogin");
+// Route::post("/login", [userLoginController::class, "userdata"]);
 
-Route::group(["middleware"=>["AgeCheck"]], function() {
-    Route::view("userLogin","userLogin");
-});
+// Route::view("/noAccess","noAccessGlobal");
+
+// Route::group(["middleware"=>["AgeCheck"]], function() {
+//     Route::view("userLogin","userLogin");
+// });
+
+// Route::get("/allUserData", [UserController::class, "getUserData"]);
+
+Route::get("/fileUpload", 'UserController@fileUpload');
+Route::post("/fileUpload", 'UserController@filePostUpload');
