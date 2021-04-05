@@ -55,5 +55,22 @@ class UserController extends Controller {
             $file->move($destinationPath,$file->getClientOriginalName());
         }
     }
+
+    function deleteUser ($id) {
+        $user = User::find($id);
+        $user->delete();
+        return redirect("/pagination");
+    }
+
+    function editUser ($id) {
+        $user = User::find($id);
+        error_log("Ok worked");
+        return view("editUser", ["editUser"=>$user]);
+    }
+
+    function editUserData (Request $req) {
+        error_log("Ok worked");
+        echo $req; 
+    }
 }
 

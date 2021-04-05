@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userLoginController;
+use App\Http\Controllers\pagination;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,14 @@ use App\Http\Controllers\userLoginController;
 
 // Route::get("/allUserData", [UserController::class, "getUserData"]);
 
+Route::view('/', 'welcome');
+
 Route::get("/fileUpload", 'UserController@fileUpload');
 Route::post("/fileUpload", 'UserController@filePostUpload');
+
+Route::get('/pagination', 'pagination@paginate');
+
+Route::get('/delete/{id}', 'UserController@deleteUser');
+Route::get('/edit/{id}', 'UserController@editUser');
+
+Route::post('/editUserData', 'UserController@editUserData')->name("editUser");
