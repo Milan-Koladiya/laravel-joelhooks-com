@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userLoginController;
 use App\Http\Controllers\pagination;
+use App\Http\Controllers\queryBuilder;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,5 @@ Route::get('/delete/{id}', 'UserController@deleteUser');
 Route::get('/edit/{id}', 'UserController@editUser');
 
 Route::post('/editUserData', 'UserController@editUserData')->name("editUser");
+
+Route::get('/queryBuilder', 'queryBuilder@queryBuilder');
