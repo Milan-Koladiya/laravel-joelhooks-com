@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\userLoginController;
 use App\Http\Controllers\pagination;
 use App\Http\Controllers\queryBuilder;
+use App\Http\Controllers\relationTest;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,5 @@ Route::get('/edit/{id}', 'UserController@editUser');
 Route::post('/editUserData', 'UserController@editUserData')->name("editUser");
 
 Route::get('/queryBuilder', 'queryBuilder@queryBuilder');
+
+Route::get('/relationTest', 'relationTest@getUserWithPost');

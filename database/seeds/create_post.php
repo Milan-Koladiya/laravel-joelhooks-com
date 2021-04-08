@@ -13,10 +13,10 @@ class create_post extends Seeder
      */
     public function run()
     {
-        DB::table('post')->insert([
+        DB::table('posts')->insert([
             'title'=>Str::random(10),
             'body'=>Str::random(20),
-            'user_id'=>1
+            'userId'=>1
         ]);
     }
 }

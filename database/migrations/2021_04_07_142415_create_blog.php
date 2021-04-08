@@ -13,11 +13,11 @@ class CreateBlog extends Migration
      */
     public function up()
     {
-        Schema::create('blog', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string("title");
             $table->string("body");
-            $table->integer("user_id");
+            $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
