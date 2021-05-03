@@ -66,3 +66,7 @@ Route::get('/queryBuilder', 'queryBuilder@queryBuilder');
 Route::get('/relationTest', 'relationTest@getUserWithPost');
 
 Route::get('/routemodelbinding/{email:email}', 'routemodelbinding@fetchDataUsingRoute');
+
+Route::get('sendbasicemail','MailController@basic_email');
+Route::get('sendhtmlemail','MailController@html_email');
+Route::get('sendattachmentemail','MailController@attachment_email');
