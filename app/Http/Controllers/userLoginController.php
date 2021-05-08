@@ -12,6 +12,6 @@ class userLoginController extends Controller
    function userdata(Request $request) {
     //    $username = $request -> username;
     //    $password = $request -> password;
-        return "Your data w";
+        return $request;
    }
 }

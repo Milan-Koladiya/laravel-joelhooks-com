@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userLoginController;
+use App\Http\Controllers\pagination;
+use App\Http\Controllers\queryBuilder;
+use App\Http\Controllers\relationTest;
+use App\Http\Controllers\routemodelbinding;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,30 +19,54 @@ use App\Http\Controllers\userLoginController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/test/milan');
-    // return view('welcome');
-});
-
-// Router::get('/testing/testcase', function($textcase) {
-//     return view('testing', ["testing"=>$textcase]);
+// Route::get('/', function () {
+//     return redirect('/test/milan');
+//     // return view('welcome');
 // });
 
-Route::get('/test/{name}', function ($name) {
-    return view('test',["name"=>$name]);
-});
+// // Router::get('/testing/testcase', function($textcase) {
+// //     return view('testing', ["testing"=>$textcase]);
+// // });
 
-// Route::get('user/{id}', [UserController::class,'show']);
-Route::get('user/{id}', [UserController::class,'User']);
+// Route::get('/test/{name}', function ($name) {
+//     return view('test',["name"=>$name]);
+// });
 
-Route::get("/testingComponent", [UserController::class,'testingFunction'])->middleware('ageCheck');
+// // Route::get('user/{id}', [UserController::class,'show']);
+// Route::get('user/{id}', [UserController::class,'User']);
+
+// Route::get("/testingComponent", [UserController::class,'testingFunction'])->middleware('ageCheck');
 
 
-Route::post("/login", [userLoginController::class, "userdata"]);
-
-Route::view("/noAccess","noAccessGlobal");
 // Route::view("userLogin","userLogin");
+// Route::post("/login", [userLoginController::class, "userdata"]);
 
-Route::group(["middleware"=>["AgeCheck"]], function() {
-    Route::view("userLogin","userLogin");
-});
+// Route::view("/noAccess","noAccessGlobal");
+
+// Route::group(["middleware"=>["AgeCheck"]], function() {
+//     Route::view("userLogin","userLogin");
+// });
+
+// Route::get("/allUserData", [UserController::class, "getUserData"]);
+
+Route::view('/', 'welcome');
+
+Route::get("/fileUpload", 'UserController@fileUpload');
+Route::post("/fileUpload", 'UserController@filePostUpload');
+
+Route::get('/pagination', 'pagination@paginate');
+
+Route::get('/delete/{id}', 'UserController@deleteUser');
+Route::get('/edit/{id}', 'UserController@editUser');
+
+Route::post('/editUserData', 'UserController@editUserData')->name("editUser");
+
+Route::get('/queryBuilder', 'queryBuilder@queryBuilder');
+
+Route::get('/relationTest', 'relationTest@getUserWithPost');
+
+Route::get('/routemodelbinding/{email:email}', 'routemodelbinding@fetchDataUsingRoute');
+
+Route::get('sendbasicemail','MailController@basic_email');
+Route::get('sendhtmlemail','MailController@html_email');
+Route::get('sendattachmentemail','MailController@attachment_email');

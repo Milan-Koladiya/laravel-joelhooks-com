@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller {
     function User($id) {
@@ -13,6 +14,63 @@ class UserController extends Controller {
     function testingFunction() {
         $user = ["Milan","Piyush","Bhauik"];
         return view("user", ["user"=>$user]);
+    }
+    function getUserData() {
+        $allUser = User::all();
+        // $ssss = new Object( "user",$allUser )
+        return $allUser;
+    }
+    function fileUpload() {
+        return view("fileUpload");
+    }
+    function filePostUpload(Request $req) {
+        echo 'Username : ',$req->input('username');
+        echo '<br>'; 
+
+        $file = $req->file('userAvter');
+        if($file){
+            echo 'File Name: '.$file->getClientOriginalName();
+    
+                //Display File Name
+            echo 'File Name: '.$file->getClientOriginalName();
+            echo '<br>';
+        
+            //Display File Extension
+            echo 'File Extension: '.$file->getClientOriginalExtension();
+            echo '<br>';
+        
+            //Display File Real Path
+            echo 'File Real Path: '.$file->getRealPath();
+            echo '<br>';
+        
+            //Display File Size
+            echo 'File Size: '.$file->getSize();
+            echo '<br>';
+        
+            //Display File Mime Type
+            echo 'File Mime Type: '.$file->getMimeType();
+        
+            //Move Uploaded File
+            $destinationPath = 'uploads';
+            $file->move($destinationPath,$file->getClientOriginalName());
+        }
+    }
+
+    function deleteUser ($id) {
+        $user = User::find($id);
+        $user->delete();
+        return redirect("/pagination");
+    }
+
+    function editUser ($id) {
+        $user = User::find($id);
+        error_log("Ok worked");
+        return view("editUser", ["editUser"=>$user]);
+    }
+
+    function editUserData (Request $req) {
+        error_log("Ok worked");
+        echo $req; 
     }
 }
 
