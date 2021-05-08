@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIdevelopment;
+use App\Http\Controllers\authenticationRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,16 @@ use App\Http\Controllers\APIdevelopment;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::group(["middleware => ['auth:sanctum']"], function() {
+// }); 
+
+Route::group(['middleware' => 'auth:sanctum'], function(){
+    Route::get("/authRoute", "authenticationRoute@sampleRoute");
+});
+
+Route::post("/login", "authenticationRoute@login");
+Route::post("/register", "authenticationRoute@register");
 
 Route::get("/getUser/{id}", "APIdevelopment@getUserById");
 Route::post("/updateUserById", "APIdevelopment@updateUserById");
